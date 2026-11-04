@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ROADTRIP // ZARAGOZA & DONOSTI</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <!-- GSAP & ScrollTrigger CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body>
+
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+        <div class="sticky-container">
+            <img src="./img/donosti_concha.jpg" id="hero-bg" class="bg-layer" alt="Portada">
+            <div class="overlay"></div>
+            <div class="hero-title">
+                <h1>EL VIAJE</h1>
+                <p>Desliza para comenzar la experiencia</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ETAPA 1: VIERNES NOCHE -->
+    <section class="scroll-stage" id="stage-viernes">
+        <div class="sticky-container">
+            <img src="./img/zaragoza_noche.jpg" class="bg-layer step-img" alt="Zaragoza Noche">
+            <div class="overlay"></div>
+            <div class="content-box">
+                <span class="tag">VIERNES 17:00H</span>
+                <h2>Rumores de Zaragoza</h2>
+                <p>Salida, cena en ruta y desembarco a las 23:00h. Check-in y primera ronda por la zona universitaria y El Tubo.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ETAPA 2: SÁBADO MAÑANA -->
+    <section class="scroll-stage" id="stage-sabado-manana">
+        <div class="sticky-container">
+            <img src="./img/pilar.jpg" class="bg-layer step-img" alt="El Pilar">
+            <div class="overlay"></div>
+            <div class="content-box">
+                <span class="tag">SÁBADO MAÑANA</span>
+                <h2>El Pilar & Gastronomía</h2>
+                <p>Visita mañanera a la Basílica y comida épica en el centro histórico antes de poner rumbo al norte.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ETAPA 3: LA RUTA HACIA EL NORTE -->
+    <section class="scroll-stage" id="stage-donosti">
+        <div class="sticky-container">
+            <img src="./img/ulia.jpg" class="bg-layer step-img" alt="Ruta Donosti">
+            <div class="overlay"></div>
+            <div class="content-box">
+                <span class="tag">SÁBADO TARDE</span>
+                <h2>3 Horas al Norte</h2>
+                <p>Con el café listo, cruzamos a Donostia. Acantilados de Ulía, brisa marina y la magia del Cantábrico.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ETAPA 4: PLANES Y PINTXOS -->
+    <section class="scroll-stage" id="stage-pintxos">
+        <div class="sticky-container">
+            <img src="./img/pintxos.jpg" class="bg-layer step-img" alt="Pintxos">
+            <div class="overlay"></div>
+            <div class="content-box">
+                <span class="tag">DOMINGO</span>
+                <h2>El Festín Final</h2>
+                <p>Ruta de pintxos por la Parte Vieja, cata en la Bodega Gaintza, Aquarium y Basque Culinary Center.</p>
+            </div>
+        </div>
+    </section>
+
+    <script src="./js/main.js"></script>
+</body>
+</html>

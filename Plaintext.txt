@@ -1,0 +1,12 @@
+viaje-zaragoza-donosti/
+├── index.html
+├── css/
+│   └── style.css
+├── js/
+│   └── main.js
+└── img/
+    ├── donosti_concha.jpg
+    ├── zaragoza_noche.jpg
+    ├── pilar.jpg
+    ├── ulia.jpg
+    └── pintxos.jpg
