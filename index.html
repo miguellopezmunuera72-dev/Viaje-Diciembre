@@ -25,8 +25,13 @@
             overflow-x: hidden;
         }
 
+        /* Bloqueo de scroll inicial hasta pulsar para arrancar */
+        body.locked {
+            overflow: hidden;
+        }
+
         .scroll-stage, .hero-section {
-            height: 250vh; /* Controla la velocidad de desplazamiento */
+            height: 250vh;
             position: relative;
         }
 
@@ -57,6 +62,56 @@
             width: 100%;
             height: 100%;
             background: radial-gradient(circle, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.85) 100%);
+            z-index: 2;
+        }
+
+        /* ESCENA HERO CON EL COCHE */
+        .car-container {
+            position: absolute;
+            bottom: 15%;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            width: 80%;
+            max-width: 600px;
+            transition: transform 0.1s linear;
+        }
+
+        .car-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: drop-shadow(0px 10px 20px rgba(0,0,0,0.8));
+        }
+
+        .start-btn-wrapper {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 20;
+            text-align: center;
+        }
+
+        .start-btn {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #fff;
+            padding: 16px 32px;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            border-radius: 40px;
+            cursor: pointer;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .start-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
         }
 
         .hero-title, .content-box {
@@ -68,7 +123,7 @@
         }
 
         .hero-title h1 {
-            font-size: 4rem;
+            font-size: 3.5rem;
             font-weight: 800;
             letter-spacing: -2px;
             background: linear-gradient(180deg, #fff 0%, #888 100%);
@@ -86,20 +141,19 @@
         }
 
         .content-box h2 {
-            font-size: 3rem;
+            font-size: 2.8rem;
             font-weight: 800;
             margin-bottom: 15px;
             letter-spacing: -1px;
         }
 
         .content-box p {
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             color: #a1a1a6;
             line-height: 1.5;
             font-weight: 300;
         }
 
-        /* Botón final para confirmar por WhatsApp */
         .cta-btn {
             display: inline-block;
             margin-top: 25px;
@@ -118,21 +172,33 @@
         }
     </style>
 </head>
-<body>
+<body class="locked">
 
-    <!-- HERO SECTION: Entrada cinemática -->
+    <!-- HERO SECTION: COCHE + APERTURA DE PUERTA -->
     <section class="hero-section">
         <div class="sticky-container">
-            <img src="./img/donosti_concha.jpg" id="hero-bg" class="bg-layer" alt="Portada">
+            <!-- Vídeo de fondo de portada -->
+            <video src="./img/hero_bg.mp4" id="hero-bg" class="bg-layer" autoplay loop muted playsinline></video>
             <div class="overlay"></div>
-            <div class="hero-title">
+            
+            <div class="hero-title" id="hero-text">
                 <h1>EL VIAJE</h1>
-                <p>Desliza para comenzar la experiencia</p>
+                <p>Zaragoza & Donosti</p>
+            </div>
+
+            <!-- Botón de arrancar -->
+            <div class="start-btn-wrapper" id="start-trigger">
+                <button class="start-btn" onclick="unlockDrive()">ABRIR PUERTA Y ARRANCAR 🔑</button>
+            </div>
+
+            <!-- Silueta / Imagen del Coche -->
+            <div class="car-container" id="car">
+                <img src="./img/coche.png" class="car-img" alt="Coche">
             </div>
         </div>
     </section>
 
-    <!-- ETAPA 1: VIERNES NOCHE -->
+    <!-- ETAPA 1: VIERNES NOCHE (VÍDEO) -->
     <section class="scroll-stage" id="stage-viernes">
         <div class="sticky-container">
             <video src="./img/zaragoza_noche.mp4" class="bg-layer step-img" autoplay loop muted playsinline></video>
@@ -145,10 +211,10 @@
         </div>
     </section>
 
-    <!-- ETAPA 2: SÁBADO MAÑANA -->
-    <section class="scroll-stage" id="stage-sabado-manana">
+    <!-- ETAPA 2: SÁBADO MAÑANA (VÍDEO) -->
+    <section class="scroll-stage" id="stage-sabado">
         <div class="sticky-container">
-            <img src="./img/pilar.jpg" class="bg-layer step-img" alt="El Pilar">
+            <video src="./img/pilar.mp4" class="bg-layer step-img" autoplay loop muted playsinline></video>
             <div class="overlay"></div>
             <div class="content-box">
                 <span class="tag">SÁBADO MAÑANA</span>
@@ -158,10 +224,10 @@
         </div>
     </section>
 
-    <!-- ETAPA 3: LA RUTA HACIA EL NORTE -->
+    <!-- ETAPA 3: LA RUTA HACIA EL NORTE (VÍDEO) -->
     <section class="scroll-stage" id="stage-donosti">
         <div class="sticky-container">
-            <img src="./img/ulia.jpg" class="bg-layer step-img" alt="Ruta Donosti">
+            <video src="./img/ulia.mp4" class="bg-layer step-img" autoplay loop muted playsinline></video>
             <div class="overlay"></div>
             <div class="content-box">
                 <span class="tag">SÁBADO TARDE</span>
@@ -171,10 +237,10 @@
         </div>
     </section>
 
-    <!-- ETAPA 4: PLANES Y PINTXOS -->
+    <!-- ETAPA 4: PLANES Y PINTXOS (VÍDEO) -->
     <section class="scroll-stage" id="stage-pintxos">
         <div class="sticky-container">
-            <img src="./img/pintxos.jpg" class="bg-layer step-img" alt="Pintxos">
+            <video src="./img/pintxos.mp4" class="bg-layer step-img" autoplay loop muted playsinline></video>
             <div class="overlay"></div>
             <div class="content-box">
                 <span class="tag">DOMINGO</span>
@@ -189,38 +255,59 @@
     <script>
         gsap.registerPlugin(ScrollTrigger);
 
-        // Animación del Hero
-        gsap.to("#hero-bg", {
+        // Desbloquear scroll al pulsar el botón
+        function unlockDrive() {
+            document.body.classList.remove('locked');
+            
+            // Ocultar el botón
+            gsap.to("#start-trigger", { opacity: 0, duration: 0.5, display: "none" });
+            
+            // Leve temblor / arranque de motor en el coche
+            gsap.to("#car", {
+                y: -10,
+                duration: 0.1,
+                repeat: 5,
+                yoyo: true,
+                onComplete: () => {
+                    // Indicar que ya pueden deslizar
+                    document.querySelector("#hero-text p").innerText = "Desliza para arrancar el viaje ↓";
+                }
+            });
+        }
+
+        // ANIMACIÓN DEL COCHE CON SCROLL (Se desplaza hacia la derecha hasta salir de pantalla)
+        gsap.to("#car", {
             scrollTrigger: {
                 trigger: ".hero-section",
                 start: "top top",
                 end: "bottom top",
                 scrub: true
             },
-            scale: 1.3,
-            opacity: 0.3
+            x: "150vw", // Desplaza el coche fuera de la pantalla por la derecha
+            scale: 0.9,
+            opacity: 0.8
         });
 
-        gsap.to(".hero-title", {
+        // Difuminar el fondo del Hero al bajar
+        gsap.to("#hero-bg, #hero-text", {
             scrollTrigger: {
                 trigger: ".hero-section",
                 start: "top top",
-                end: "30% top",
+                end: "60% top",
                 scrub: true
             },
             opacity: 0,
             y: -50
         });
 
-        // Animación por cada etapa del viaje
+        // ANIMACIÓN DE ETAPAS (VÍDEOS)
         const stages = document.querySelectorAll('.scroll-stage');
 
         stages.forEach((stage) => {
-            const img = stage.querySelector('.bg-layer');
+            const vid = stage.querySelector('.bg-layer');
             const content = stage.querySelector('.content-box');
 
-            // Zoom-in de imagen al entrar
-            gsap.fromTo(img, 
+            gsap.fromTo(vid, 
                 { scale: 1.2, opacity: 0.2 },
                 {
                     scale: 1,
@@ -234,8 +321,7 @@
                 }
             );
 
-            // Zoom-out e imagen opaca al salir
-            gsap.to(img, {
+            gsap.to(vid, {
                 scale: 0.9,
                 opacity: 0.1,
                 scrollTrigger: {
@@ -246,7 +332,6 @@
                 }
             });
 
-            // Animación de texto estilo Apple (entra por abajo y vuelve a salir por arriba)
             gsap.fromTo(content,
                 { opacity: 0, y: 100 },
                 {
