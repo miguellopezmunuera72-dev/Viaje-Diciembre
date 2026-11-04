@@ -94,26 +94,26 @@
         }
 
         .start-btn {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: none; /* Eliminado el borde exterior estilo IA */
             color: #fff;
-            padding: 16px 32px;
-            font-size: 1rem;
-            font-weight: 600;
-            letter-spacing: 1px;
+            padding: 16px 36px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
             border-radius: 40px;
             cursor: pointer;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
         }
 
         .start-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.02);
         }
-
+        
         .hero-title, .content-box {
             position: relative;
             z-index: 10;
@@ -188,9 +188,9 @@
 
             <!-- Botón de arrancar -->
             <div class="start-btn-wrapper" id="start-trigger">
-                <button class="start-btn" onclick="unlockDrive()">ABRIR PUERTA Y ARRANCAR 🔑</button>
+                <button class="start-btn" onclick="unlockDrive()">ABRIR PUERTA Y ARRANCAR</button>
             </div>
-
+            
             <!-- Silueta / Imagen del Coche -->
             <div class="car-container" id="car">
                 <img src="./img/coche.png" class="car-img" alt="Coche">
